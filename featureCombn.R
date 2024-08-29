@@ -4,9 +4,27 @@ if(length(args) !=2){
 	print("R script topn base.auc.dir")
 	quit()
 }
-	
-n = args[1]
-wdir = args[2]
+
+# Initialize variables
+top_n <- NULL
+base_auc_dir <- NULL
+
+# Parse named arguments
+for (i in seq(1, length(args), by=2)) {
+  if (args[i] == "--topn") {
+    top_n <- args[i + 1]
+  } else if (args[i] == "--base.auc.dir") {
+    base_auc_dir <- args[i + 1]
+  } 
+}
+
+if (is.null(top_n) || is.null(base_auc_dir)) {
+  print("Usage: Rscript featureCombn.R --topn <topn> --base.auc.dir <base_auc_dir>")
+  quit()
+}
+
+n = top_n
+wdir = base.auc.dir
 setwd(wdir)
 
 dir.create('BasemodelScore')
