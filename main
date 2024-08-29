@@ -1,0 +1,20 @@
+#!/mnt/binf/stephanie/anaconda3/envs/gsml/bin/python
+
+import sys
+import os
+
+import click
+import command
+
+
+@click.group(context_settings=dict(help_option_names=['-h', '--help']))
+def cli():
+    pass
+
+
+cli = click.CommandCollection(sources=[cli,
+                                       command.cli_model,
+                                       ])
+
+if __name__ == '__main__':
+    cli()
